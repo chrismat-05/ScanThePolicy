@@ -21,8 +21,14 @@ def extract_category_points(text: str, keywords: List[str]) -> List[str]:
     points = []
     doc = nlp(text)
     for sent in doc.sents:
-        if any(kw in sent.text.lower() for kw in keywords):
-            points.append(sent.text.strip())
+        s = sent.text.strip()
+        # Filter: skip headers, boilerplate, generic, long, or contact/update lines
+        if (
+            any(kw in s.lower() for kw in keywords)
+            and len(s.split()) <= 20
+            and not re.match(r'^(privacy policy|effective date|contact|updates? to this policy|major changes|platform evolves|questions|concerns|formbuilderjs|tabulator|sheetjs|jspdf|resend mail|google sign-in|firebase|firestore|functions|data processing|data export|local|browser|server|email us|use our contact us form)', s.lower())
+        ):
+            points.append(s)
     return points[:10]
 
 def summarize_text(text: str) -> List[str]:
@@ -50,7 +56,11 @@ async def analyze_policy(input_type: str, content: str) -> Dict:
         for s in summary:
             for sent in re.split(r'(?<=[.!?])\s+', s):
                 sent = sent.strip()
-                if sent and len(sent.split()) <= 30:
+                if (
+                    sent
+                    and len(sent.split()) <= 20
+                    and not re.match(r'^(privacy policy|effective date|contact|updates? to this policy|major changes|platform evolves|questions|concerns|formbuilderjs|tabulator|sheetjs|jspdf|resend mail|google sign-in|firebase|firestore|functions|data processing|data export|local|browser|server|email us|use our contact us form)', sent.lower())
+                ):
                     highlights.append(sent)
         return highlights[:10]
 
