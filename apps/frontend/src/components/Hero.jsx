@@ -16,13 +16,9 @@ const Hero = ({ onAnalyze }: HeroProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
-    
     setIsLoading(true);
-    // Simulate API call delay
-    setTimeout(() => {
-      onAnalyze(input, inputType);
-      setIsLoading(false);
-    }, 2000);
+    await onAnalyze(input, inputType);
+    setIsLoading(false);
   };
 
   const isUrl = input.trim().startsWith('http');
