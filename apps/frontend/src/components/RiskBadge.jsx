@@ -1,19 +1,15 @@
 import { Shield, AlertTriangle, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface RiskBadgeProps {
-  score: number;
-  className?: string;
-}
 
-const RiskBadge = ({ score, className }: RiskBadgeProps) => {
-  const getRiskLevel = (score: number) => {
+const RiskBadge = ({ score, className }) => {
+  const getRiskLevel = (score) => {
     if (score <= 3) return 'safe';
     if (score <= 6) return 'medium';
     return 'high';
   };
 
-  const getRiskConfig = (level: string) => {
+  const getRiskConfig = (level) => {
     switch (level) {
       case 'safe':
         return {

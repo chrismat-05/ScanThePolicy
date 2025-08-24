@@ -4,25 +4,22 @@ import { Button } from "@/components/ui/button";
 import { Scan, Link2, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface HeroProps {
-  onAnalyze: (content: string, type: 'text' | 'url') => void;
-}
+/**
+ * @typedef {Object} HeroProps
+ * @property {(content: string, type: 'text' | 'url') => void} onAnalyze
+ */
 
-const Hero = ({ onAnalyze }: HeroProps) => {
+const Hero = ({ onAnalyze }) => {
   const [input, setInput] = useState("");
-  const [inputType, setInputType] = useState<'text' | 'url'>('text');
+  const [inputType, setInputType] = useState('text');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!input.trim()) return;
-    
     setIsLoading(true);
-    // Simulate API call delay
-    setTimeout(() => {
-      onAnalyze(input, inputType);
-      setIsLoading(false);
-    }, 2000);
+    await onAnalyze(input, inputType);
+    setIsLoading(false);
   };
 
   const isUrl = input.trim().startsWith('http');

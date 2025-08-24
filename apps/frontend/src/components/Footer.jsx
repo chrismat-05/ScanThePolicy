@@ -28,7 +28,7 @@ const Footer = () => {
                 className="border-card-border hover:bg-muted/50"
               >
                 <a 
-                  href="https://github.com" 
+                  href="https://github.com/chrismat-05/ScanThePolicy/issues" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2"
@@ -45,7 +45,7 @@ const Footer = () => {
                 className="border-card-border hover:bg-muted/50"
               >
                 <a 
-                  href="https://github.com" 
+                  href="https://github.com/chrismat-05/ScanThePolicy" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2"
