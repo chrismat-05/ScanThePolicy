@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+spacy
+sumy
+gensim
+httpx
+pydantic
