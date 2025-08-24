@@ -41,15 +41,22 @@ def score_privacy_risk(text: str) -> int:
 
 async def analyze_policy(input_type: str, content: str) -> Dict:
     text = content
-    data_collected = extract_category_points(text, CATEGORY_KEYWORDS["data_collected"])
-    data_sharing = extract_category_points(text, CATEGORY_KEYWORDS["data_sharing"])
-    user_rights = extract_category_points(text, CATEGORY_KEYWORDS["user_rights"])
-    if not data_collected:
-        data_collected = summarize_text(text)
-    if not data_sharing:
-        data_sharing = summarize_text(text)
-    if not user_rights:
-        user_rights = summarize_text(text)
+    def get_highlights(category):
+        points = extract_category_points(text, CATEGORY_KEYWORDS[category])
+        if points:
+            return points
+        summary = summarize_text(text)
+        highlights = []
+        for s in summary:
+            for sent in re.split(r'(?<=[.!?])\s+', s):
+                sent = sent.strip()
+                if sent and len(sent.split()) <= 30:
+                    highlights.append(sent)
+        return highlights[:10]
+
+    data_collected = get_highlights("data_collected")
+    data_sharing = get_highlights("data_sharing")
+    user_rights = get_highlights("user_rights")
     risk_score = score_privacy_risk(text)
     return {
         "risk_score": risk_score,
