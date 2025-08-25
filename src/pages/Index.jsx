@@ -34,10 +34,10 @@ const mockResults = {
 };
 
 const Index = () => {
-  const [currentView, setCurrentView] = useState<'hero' | 'loading' | 'results'>('hero');
+  const [currentView, setCurrentView] = useState('hero');
   const [analysisData, setAnalysisData] = useState(mockResults);
 
-  const handleAnalyze = (content: string, type: 'text' | 'url') => {
+  const handleAnalyze = (content, type) => {
     setCurrentView('loading');
     
     // Simulate API call with different results based on content
