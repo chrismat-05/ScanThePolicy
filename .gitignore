@@ -7,18 +7,65 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Node.js
+node_modules/
+dist/
+dist-ssr/
+.next/
 *.local
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.manifest
+*.spec
+*.coverage
+.coverage.*
+.cache/
+.pytest_cache/
+.tox/
+.env
+.venv
+env/
+venv/
+ENV/
+instance/
+*.db
+
+# Vercel
+.vercel/
+
+# MacOS
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# IDEs
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Misc
+*.bak
+*.tmp
+*.swp
+*.swo
+
+# Test output
+junit.xml
+coverage.xml
+
+# Others
+*.sqlite3
