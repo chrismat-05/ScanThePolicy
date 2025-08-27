@@ -12,17 +12,12 @@ const actionTypes = {
   UPDATE_TOAST: "UPDATE_TOAST",
   DISMISS_TOAST: "DISMISS_TOAST",
   REMOVE_TOAST: "REMOVE_TOAST",
-}
 
 let count = 0
 
 function genId() {
   count = (count + 1) % Number.MAX_SAFE_INTEGER
   return count.toString()
-
-
-
-
 
 const toastTimeouts = new Map()
 
@@ -40,7 +35,6 @@ const addToRemoveQueue = (toastId) => {
   }, TOAST_REMOVE_DELAY)
 
   toastTimeouts.set(toastId, timeout)
-}
 
 const reducer = (state, action) => {
   switch (action.type) {
