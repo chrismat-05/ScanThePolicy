@@ -5,3 +5,4 @@ sumy
 gensim
 httpx
 pydantic
+en_core_web_sm
