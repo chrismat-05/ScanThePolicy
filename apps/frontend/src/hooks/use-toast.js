@@ -138,4 +138,3 @@ function useToast() {
 }
 
 export { useToast, toast, reducer }
-export { useToast, toast, reducer }
