@@ -1,11 +1,15 @@
 import spacy
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    from spacy.cli.download import download
+    download("en_core_web_sm")
+    nlp = spacy.load("en_core_web_sm")
 from sumy.summarizers.lsa import LsaSummarizer
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 from typing import Dict, List
 import re
-
-nlp = spacy.load("en_core_web_sm")
 
 RISK_KEYWORDS = [
     "sell", "third party", "indefinitely", "share", "advertiser", "retained", "data broker", "tracking", "analytics", "opt-out"
