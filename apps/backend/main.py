@@ -18,7 +18,6 @@ async def summarize_policy(req: SummarizeRequest):
     result = await analyze_policy(req.input_type, req.content)
     return SummarizeResponse(**result)
 
-# Health check route
 @app.get("/api/health")
 async def health():
     return {"status": "ok"}
