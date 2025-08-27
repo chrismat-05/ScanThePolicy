@@ -5,14 +5,14 @@ from typing import List, Dict
 app = FastAPI()
 
 class SummarizeRequest(BaseModel):
-    input_type: str  # "text" or "url"
+    input_type: str
     content: str
 
 class SummarizeResponse(BaseModel):
     risk_score: int
     summaries: Dict[str, List[str]]
 
-@app.post("/summarize", response_model=SummarizeResponse)
+@app.post("/api/summarize", response_model=SummarizeResponse)
 async def summarize_policy(req: SummarizeRequest):
     # TODO: Add NLP, scoring, and summarization logic here
     # For now, return dummy data
@@ -24,3 +24,8 @@ async def summarize_policy(req: SummarizeRequest):
             "user_rights": ["Right to request deletion", "Right to access data"]
         }
     )
+
+# Health check route
+@app.get("/api/health")
+async def health():
+    return {"status": "ok"}
