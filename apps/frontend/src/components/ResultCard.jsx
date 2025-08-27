@@ -1,14 +1,7 @@
-import { LucideIcon } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
-interface ResultCardProps {
-  title: string;
-  icon: LucideIcon;
-  items: string[];
-  className?: string;
-}
 
-const ResultCard = ({ title, icon: Icon, items, className }: ResultCardProps) => {
+const ResultCard = ({ title, icon: Icon, items, className }) => {
   return (
     <Card className={`category-card p-6 rounded-2xl ${className}`}>
       <div className="flex items-center space-x-3 mb-4">
