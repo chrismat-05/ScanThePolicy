@@ -5,10 +5,12 @@ from typing import List, Dict
 from analyze import analyze_policy
 import httpx
 
+
 app = FastAPI()
 
-    input_type: str  # 'text' or 'url'
-    content: str     # raw text or URL
+class SummarizeRequest(BaseModel):
+    input_type: str
+    content: str
 
 class SummarizeResponse(BaseModel):
     risk_score: int
