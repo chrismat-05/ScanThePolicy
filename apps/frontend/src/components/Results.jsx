@@ -4,21 +4,8 @@ import ResultCard from "./ResultCard";
 import { Button } from "@/components/ui/button";
 import { Copy, RotateCcw } from "lucide-react";
 
-interface ResultsData {
-  risk_score: number;
-  summaries: {
-    data_collected: string[];
-    data_sharing: string[];
-    user_rights: string[];
-  };
-}
 
-interface ResultsProps {
-  data: ResultsData;
-  onReset: () => void;
-}
-
-const Results = ({ data, onReset }: ResultsProps) => {
+const Results = ({ data, onReset }) => {
   const handleCopyResults = () => {
     const summary = `
 Privacy Policy Analysis Results:

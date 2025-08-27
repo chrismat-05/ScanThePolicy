@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Results from "@/components/Results";
@@ -8,6 +9,7 @@ import Footer from "@/components/Footer";
 const Index = () => {
   const [currentView, setCurrentView] = useState('hero');
   const [analysisData, setAnalysisData] = useState(null);
+  const { toast } = useToast();
 
   const handleAnalyze = async (content, type) => {
     setCurrentView('loading');
@@ -24,7 +26,11 @@ const Index = () => {
       setAnalysisData(result);
       setCurrentView('results');
     } catch (error) {
-      // Optionally show a toast or error message
+      toast({
+        title: 'Analysis Error',
+        description: error.message || 'Failed to analyze policy. Please try again.',
+        variant: 'destructive',
+      });
       setAnalysisData({
         risk_score: 0,
         summaries: {
